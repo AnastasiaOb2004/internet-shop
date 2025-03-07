@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> NF shop </title>
+    <link rel="stylesheet" href="css/home.css" />
+</head>
+
+<body>
+    <nav class="navbar"></nav>
+
+    <section id = "especially-for-you"></section>
+
+    <section id = "lowprices"></section>
+    
+    <section id = "tiktok-trends"></section>
+
+    <section id = "clothes"></section>
+
+     <footer></footer>
+    <script src = "js/nav.js"></script>
+    <script src = "js/home.js"></script>
+    <script src = "js/footer.js"></script>
+    <script> 
+     getProducts('TikTok trends').then(data => createProductSlider(data, '#tiktok-trends','TikTok Hits'));
+     getProducts('Especially-for-you').then(data => createProductSlider(data, '#especially-for-you','Especially for you'));
+     getProducts('Low Prices').then(data => createProductSlider(data, '#lowprices','Low prices'));
+     getProducts('Clothes').then(data => createProductSlider(data, '#clothes','Men clothes'));
+    </script>
+</body>
+
+</html>
