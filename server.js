@@ -4,8 +4,13 @@ const bcrypt = require('bcrypt');
 const path = require('path');
 
 
-//firebase admin setup
-let serviceAccount = require("./webtproject-cc06d-firebase-adminsdk-7jj8s-350dee17a9.json");
+const path = require('path');
+
+// Use the path Render mounts secret files at:
+const serviceAccountPath = "/etc/secrets/webtproject-cc06d-firebase-adminsdk-7jj8s-350dee17a9.json";
+
+// Load the service account JSON from the mounted secret file path
+let serviceAccount = require(serviceAccountPath);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
