@@ -1,4 +1,4 @@
-const setupSlidingEffect = () =>{
+const setupSlidingEffect = () => {
 
 }
 
@@ -19,22 +19,30 @@ productContainers.forEach((item, i) => {
 });
 
 //fetch products cards
-const getProducts = (tag) =>{
+const getProducts = (tag) => {
     return fetch('/get-products', {
         method: 'POST',
-        headers: new Headers({"Content-Type" : "application/json"}),
-        body: JSON.stringify({tag: tag})
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify({ tag: tag })
     })
-    .then (res => res.json())
-    .then(data =>{
-        return data;
-    })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            console.error('Fetch error:', err);
+        });
 }
 
 //create product slider
-const createProductSlider = (data,parent,title) => {
-let slideContainer = document.querySelector(`${parent}`);
-slideContainer.innerHTML += `
+const createProductSlider = (data, parent, title) => {
+    let slideContainer = document.querySelector(`${parent}`);
+    slideContainer.innerHTML += `
                  <section class ="product">
                  <h2 class ="product-category">${title}</h2>
                  <button class = "pre-btn"><img src ="../images/arrow.png" alt=""></button>
@@ -43,10 +51,10 @@ slideContainer.innerHTML += `
                  </section>
 `
 
-setupSlidingEffect();
+    setupSlidingEffect();
 }
 
-const createProductCards = (data,parent) => {
+const createProductCards = (data, parent) => {
     let start = '<div class="product-container">';
     let middle = '';
     let end = '</div>';
@@ -54,7 +62,7 @@ const createProductCards = (data,parent) => {
     for (let i = 0; i < data.length; i++) {
         if (data[i].id !== decodeURI(location.pathname.split('/').pop())) {
             const discount = data[i].discount ? `${data[i].discount}% off` : '';
-            const imageSrc = data[i].images && data[i].images.length > 0 ? data[i].images[0] : ''; 
+            const imageSrc = data[i].images && data[i].images.length > 0 ? data[i].images[0] : '';
 
             middle += `
                 <div class="product-card">
@@ -72,22 +80,22 @@ const createProductCards = (data,parent) => {
             `;
         }
     }
-    if(parent){
-        let cardContainer =document.querySelector(parent);
-        cardContainer.innerHTML=start + middle + end;
+    if (parent) {
+        let cardContainer = document.querySelector(parent);
+        cardContainer.innerHTML = start + middle + end;
     } else {
-    return start + middle + end;
+        return start + middle + end;
     }
 }
 
 const add_product_to_cart_or_wishlist = (type, product) => {
     let data = JSON.parse(localStorage.getItem(type));
-    if(data == null){
-        data =[];
+    if (data == null) {
+        data = [];
     }
 
     product = {
-        item : 1,
+        item: 1,
         name: product.name,
         sellingPrice: product.sellingPrice,
         shortDes: product.shortDes,

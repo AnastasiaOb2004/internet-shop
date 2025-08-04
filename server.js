@@ -221,37 +221,41 @@ docName.set(req.body)
 })
 
 //get products
-app.post('/get-products', (req,res) =>{
-    let{email, id, tag} = req.body;
-   
-    if(id){
-      docRef =  db.collection('products').doc(id)
-    } else if (tag) {
-      
-        docRef = db.collection('products').where('tags', 'array-contains', tag)
-      
-    } else{
-        docRef = db.collection('products').where('email', '==', email)
-    }
+app.post('/get-products', (req, res) => {
+  let {email, id, tag} = req.body;
 
-    docRef.get()
-    .then(products =>{
-        if(products.empty){
-            return res.json('no products')
-        }
-        let productArr =[];
-        if(id){
-            return res.json(products.data());
-        } else {
-            products.forEach(item =>{
-                let data =item.data();
-                data.id = item.id;
-                productArr.push(data);
-            })
-            res.json(productArr);
-        }
+  let docRef;
+  if (id) {
+    docRef = db.collection('products').doc(id);
+  } else if (tag) {
+    docRef = db.collection('products').where('tags', 'array-contains', tag);
+  } else {
+    docRef = db.collection('products').where('email', '==', email);
+  }
+
+  docRef.get()
+    .then(products => {
+      if (products.empty) {
+        return res.json({ products: [] }); 
+      }
+      if (id) {
+        return res.json({ product: products.data() }); 
+      } else {
+        let productArr = [];
+        products.forEach(item => {
+          let data = item.data();
+          data.id = item.id;
+          productArr.push(data);
+        });
+        return res.json({ products: productArr });
+      }
     })
-})
+    .catch(err => {
+      console.error('Error fetching products:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 
 app.post('/delete-product', (req,res) =>{
     let{id} = req.body;
