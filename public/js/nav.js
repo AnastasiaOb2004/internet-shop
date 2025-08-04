@@ -2,7 +2,7 @@ const createNav= () => {
     let nav = document.querySelector('.navbar');
     nav.innerHTML = `
     <div class="nav">
-    <img src="../images/logo.png" class="brand-logo" alt="">
+     <a href="../index.html"><img src="../images/logo.png" class="brand-logo" alt=""></a>
     <div class="nav-items">
         <div class="search">
             <input type="text" class="search-box" placeholder="I'm looking for...">
@@ -19,9 +19,9 @@ const createNav= () => {
     </div>
 </div>
 <ul class = "link-container">
-    <li class = "link-item"><a href = "#" class = "link">Especially for you</a></li>
-    <li class = "link-item"><a href = "#" class = "link">Low prices</a></li>
-    <li class = "link-item"><a href = "#" class = "link">TikTok hits</a></li>
+    <li class="link-item"><a href="#especially-for-you" class="link">Especially for you</a></li>
+    <li class="link-item"><a href="#lowprices" class="link">Low prices</a></li>
+    <li class="link-item"><a href="#tiktok-trends" class="link">TikTok hits</a></li>
     <li class="link-item"><a href="#" class="link">Clothes</a>
         <ul class="sub-menu">
           <li><a href="#">Man Clothes</a></li>
