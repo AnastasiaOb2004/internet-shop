@@ -3,9 +3,6 @@ const admin = require('firebase-admin');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
-
-const path = require('path');
-
 // Use the path Render mounts secret files at:
 const serviceAccountPath = "/etc/secrets/webtproject-cc06d-firebase-adminsdk-7jj8s-350dee17a9.json";
 
