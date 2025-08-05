@@ -64,13 +64,17 @@ const setupProducts = () =>{
     })
     .then(res=> res.json())
     .then(data => {
-        loader.style.display = null;
-        productListingElement.classList.remove('hide');
-        if( data == 'no products') {
-            let emptySvg = document.querySelector('.no-product-image');
-            emptySvg.classList.remove('hide');
-        } else{
-            data.forEach(product => createProduct(product))
-        }
-    })
+    loader.style.display = null;
+    productListingElement.classList.remove('hide');
+
+    console.log('Fetched products:', data);
+
+    if (!data.products || data.products.length === 0) {
+        let emptySvg = document.querySelector('.no-product-image');
+        emptySvg.classList.remove('hide');
+    } else {
+        data.products.forEach(product => createProduct(product));
+    }
+})
+
 }
