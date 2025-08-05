@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
-const serviceAccountPath = "/etc/secrets/webtproject-cc06d-firebase-adminsdk-7jj8s-350dee17a9.json";
+const serviceAccountPath = "/etc/secrets/webt-project-cede6c47f8a0.json";
 
 const serviceAccountJSON = fs.readFileSync(serviceAccountPath, 'utf8');
 const serviceAccount = JSON.parse(serviceAccountJSON);
