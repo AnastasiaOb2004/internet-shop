@@ -110,7 +110,6 @@ const productData = () => {
   .split(',')
   .map(t => t.trim().toLowerCase().replace(/\s+/g, '-')) // lowercase & replace spaces with dashes
   .filter(Boolean);
-product.tags = tagArr;
 
   return {
     name: productName.value,
