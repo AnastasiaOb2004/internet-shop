@@ -227,7 +227,7 @@ app.post('/get-products', (req, res) => {
 
   let docRef;
   if (id) {
-    docRef = db.collection('products').doc(id);
+     return res.json(products.data());
   } else if (tag) {
     docRef = db.collection('products').where('tags', 'array-contains', tag);
   } else if (email) {
