@@ -208,8 +208,9 @@ app.post('/addProduct', (req,res)=>{
     }
 
      //add product 
-let docName = id ? db.collection('products').doc(name) : db.collection('products').doc(name);
-docName.set(req.body)
+let docRef = id ? db.collection('products').doc(id) : db.collection('products').doc();
+req.body.id = docRef.id; // store it in the product
+docRef.set(req.body)
   .then(() => {
     res.json({'product': name});
   })
@@ -229,14 +230,17 @@ app.post('/get-products', (req, res) => {
     docRef = db.collection('products').doc(id);
   } else if (tag) {
     docRef = db.collection('products').where('tags', 'array-contains', tag);
-  } else {
+  } else if (email) {
     docRef = db.collection('products').where('email', '==', email);
-  }
+  } else {
+    docRef = db.collection('products');
+}
 
   docRef.get()
     .then(products => {
       if (products.empty) {
-        return res.json({ products: [] }); 
+       console.warn('No products found for', {email, id, tag});
+        return res.json({ products: [] });
       }
       if (id) {
         return res.json({ product: products.data() }); 
