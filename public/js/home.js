@@ -71,26 +71,28 @@ const createProductCards = (data) => {
 };
 
 const createProductSlider = (dataArray, parentSelector, title) => {
-  if (!Array.isArray(dataArray) || dataArray.length === 0) {
-    return;
-  }
-
   const slideContainer = document.querySelector(parentSelector);
   if (!slideContainer) return;
 
-  slideContainer.innerHTML += `
+  let content;
+  if (!Array.isArray(dataArray) || dataArray.length === 0) {
+    content = '<p class="no-products">No products yet</p>';
+  } else {
+    content = createProductCards(dataArray);
+  }
+
+  slideContainer.innerHTML = `
     <section class="product">
       <h2 class="product-category">${title}</h2>
       <button class="pre-btn"><img src="../images/arrow.png" alt=""></button>
       <button class="nxt-btn"><img src="../images/arrow.png" alt=""></button>
-      ${createProductCards(dataArray)}
+      ${content}
     </section>
   `;
 
-  const addedSections = slideContainer.querySelectorAll('.product');
-  const newSection = addedSections[addedSections.length - 1]; // last inserted
-  setupSlidingEffectForSection(newSection);
+  setupSlidingEffectForSection(slideContainer.querySelector('.product'));
 };
+
 
 const add_product_to_cart_or_wishlist = (type, product) => {
   let data = JSON.parse(localStorage.getItem(type));
@@ -107,3 +109,4 @@ const add_product_to_cart_or_wishlist = (type, product) => {
   localStorage.setItem(type, JSON.stringify(data));
   return 'Added';
 };
+
