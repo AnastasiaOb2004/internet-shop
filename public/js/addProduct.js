@@ -106,7 +106,12 @@ const validateForm = () => {
 };
 
 const productData = () => {
-  let tagArr = tags.value.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+  let tagArr = tags.value
+  .split(',')
+  .map(t => t.trim().toLowerCase().replace(/\s+/g, '-')) // lowercase & replace spaces with dashes
+  .filter(Boolean);
+
+product.tags = tagArr;
   return {
     name: productName.value,
     shortDes: shortLine.value,

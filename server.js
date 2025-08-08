@@ -181,12 +181,10 @@ app.get('/addProduct/:id', (req, res) => {
 })
 
 
-//get the upload link
 app.get('/s3url', (req,res) => {
     generateURL().then(url => res.json(url));
 })
 
-//add product
 app.post('/addProduct', (req,res)=>{
     const{ name,shortDes,des,images,actualPrice,discount,sellingPrice,stock,tags,email,draft, id}= req.body;
     if(!draft){
@@ -225,7 +223,6 @@ docRef.set(req.body)
 app.post('/get-products', (req, res) => {
     let { email, id, tag } = req.body;
 
-    // If searching by a single product ID
     if (id) {
         return db.collection('products').doc(id).get()
             .then(productDoc => {
@@ -233,7 +230,6 @@ app.post('/get-products', (req, res) => {
                     console.warn(`Product not found for id: ${id}`);
                     return res.json({ product: null });
                 }
-                // Return product data with the id
                 let data = productDoc.data();
                 data.id = productDoc.id;
                 return res.json({ product: data });
@@ -244,16 +240,15 @@ app.post('/get-products', (req, res) => {
             });
     }
 
-    // If searching by tag
     let query;
+
     if (tag) {
-        query = db.collection('products').where('tags', 'array-contains', tag);
+        const normalizedTag = tag.trim().toLowerCase().replace(/\s+/g, '-');
+        query = db.collection('products').where('tags', 'array-contains', normalizedTag);
     }
-    // If searching by seller email
     else if (email) {
         query = db.collection('products').where('email', '==', email);
     }
-    // Otherwise get all products (home page)
     else {
         query = db.collection('products');
     }
@@ -279,6 +274,7 @@ app.post('/get-products', (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         });
 });
+
 
 
 
