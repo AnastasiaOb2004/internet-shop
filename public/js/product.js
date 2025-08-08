@@ -56,19 +56,18 @@ const setData = (data) => {
 }
 
 
-//fetch data
-fetchProductData = () =>{
-     fetch('/get-products', {
-          method: 'POST',
-          headers: new Headers({'Content-Type': 'application/json'}),
-          body: JSON.stringify({id: productId})
-     })
-     .then(res=> res.json())
-     .then(data=> {
-          setData(data);
-          getProducts(data.tags[1]).then(data => createProductSlider(data,'.container-for-card-slider', 'similar products'))  
-     })
-
+fetchProductData = () => {
+  fetch('/get-products', {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json'}),
+    body: JSON.stringify({id: productId})
+  })
+  .then(res => res.json())
+  .then(data => {
+    setData(data.product);  // pass only the product object, not the whole response
+    getProducts(data.product.tags[1])
+      .then(list => createProductSlider(list, '.container-for-card-slider', 'similar products'));
+  });
 }
 
 
