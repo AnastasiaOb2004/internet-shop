@@ -221,44 +221,65 @@ docRef.set(req.body)
       
 })
 
-//get products
+// get products
 app.post('/get-products', (req, res) => {
-  let {email, id, tag} = req.body;
+    let { email, id, tag } = req.body;
 
-  let docRef;
-  if (id) {
-     return res.json(products.data());
-  } else if (tag) {
-    docRef = db.collection('products').where('tags', 'array-contains', tag);
-  } else if (email) {
-    docRef = db.collection('products').where('email', '==', email);
-  } else {
-    docRef = db.collection('products');
-}
+    // If searching by a single product ID
+    if (id) {
+        return db.collection('products').doc(id).get()
+            .then(productDoc => {
+                if (!productDoc.exists) {
+                    console.warn(`Product not found for id: ${id}`);
+                    return res.json({ product: null });
+                }
+                // Return product data with the id
+                let data = productDoc.data();
+                data.id = productDoc.id;
+                return res.json({ product: data });
+            })
+            .catch(err => {
+                console.error('Error fetching product by id:', err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            });
+    }
 
-  docRef.get()
-    .then(products => {
-      if (products.empty) {
-       console.warn('No products found for', {email, id, tag});
-        return res.json({ products: [] });
-      }
-      if (id) {
-        return res.json({ product: products.data() }); 
-      } else {
-        let productArr = [];
-        products.forEach(item => {
-          let data = item.data();
-          data.id = item.id;
-          productArr.push(data);
+    // If searching by tag
+    let query;
+    if (tag) {
+        query = db.collection('products').where('tags', 'array-contains', tag);
+    }
+    // If searching by seller email
+    else if (email) {
+        query = db.collection('products').where('email', '==', email);
+    }
+    // Otherwise get all products (home page)
+    else {
+        query = db.collection('products');
+    }
+
+    query.get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.warn('No products found for', { email, tag });
+                return res.json({ products: [] });
+            }
+
+            let productArr = [];
+            snapshot.forEach(doc => {
+                let data = doc.data();
+                data.id = doc.id;
+                productArr.push(data);
+            });
+
+            return res.json({ products: productArr });
+        })
+        .catch(err => {
+            console.error('Error fetching products:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
         });
-        return res.json({ products: productArr });
-      }
-    })
-    .catch(err => {
-      console.error('Error fetching products:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
 });
+
 
 
 app.post('/delete-product', (req,res) =>{
