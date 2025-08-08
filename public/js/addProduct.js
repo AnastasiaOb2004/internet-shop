@@ -173,8 +173,13 @@ const fetchProductData = () =>{
   })
   .then((res) => res.json())
   .then(data => {
-    setFormsData(data);
-  })
+    if (data.product) {
+        setFormsData(data.product);
+    } else {
+        location.replace('/seller');
+    }
+})
+
   .catch(err => {
     location.replace('/seller');
   })
