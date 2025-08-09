@@ -19,7 +19,7 @@ body {
 .logo {
     height: 80px;
     display: block;
-    margin: 20px auto 50px;
+    margin: 20px auto 20px;
 }
 
 .hide{
@@ -37,6 +37,10 @@ body {
     font-size: 18px;
 }
 
+
+#seller-heading {
+    padding: 0 !important;
+}
 .des{
     margin: 20px 0;
     ;
