@@ -53,13 +53,13 @@ const createProductCards = (data) => {
         <div class="product-card">
           <div class="product-image">
             <span class="discount-tag">${discount}</span>
-            <img src="${imageSrc}" class="product-thumb" alt="">
+            <img src="${imageSrc}" class="product-thumb" onclick="location.href='/product/${data[i].id}' alt="">
           </div>
           <div class="product-info" onclick="location.href='/product/${data[i].id}'">
             <h2 class="product-brand">${data[i].name || ''}</h2>
             <p class="product-short-des">${data[i].shortDes || ''}</p>
-            <span class="price">${data[i].sellingPrice || ''} SEK</span>
-            <span class="actual-price">${data[i].actualPrice || ''} SEK</span>
+            <span class="price">${data[i].sellingPrice || ''}€</span>
+            <span class="actual-price">${data[i].actualPrice || ''}€</span>
           </div>
         </div>
       `;

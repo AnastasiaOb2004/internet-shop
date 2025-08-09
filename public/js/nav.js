@@ -19,22 +19,23 @@ const createNav= () => {
     </div>
 </div>
 <ul class = "link-container">
-    <li class="link-item"><a href="#especially-for-you" class="link">Especially for you</a></li>
-    <li class="link-item"><a href="#lowprices" class="link">Low prices</a></li>
-    <li class="link-item"><a href="#tiktok-trends" class="link">TikTok hits</a></li>
-    <li class="link-item"><a href="#" class="link">Clothes</a>
-        <ul class="sub-menu">
-          <li><a href="#">Man Clothes</a></li>
-          <li><a href="#">Woman Clothes</a></li>
-          <li><a href="#">Kids Clothes</a></li>
-        </ul>
-      </li>
-    <li class = "link-item"><a href = "#" class = "link">Home improvement</a></li>
-    <li class = "link-item"><a href = "#" class = "link">Sport and entertainment</a></li>
+<li class="link-item"><a href="/#especially-for-you" class="link">Especially for you</a></li>
+<li class="link-item"><a href="/#lowprices" class="link">Low prices</a></li>
+<li class="link-item"><a href="/#tiktok-trends" class="link">TikTok hits</a></li>
+<li class="link-item"><a href="/#clothes" class="link">Clothes</a></li>
 </ul>
     `;
 }
 createNav();
+
+ //     <ul class="sub-menu">
+    //       <li><a href="#">Man Clothes</a></li>
+    //       <li><a href="#">Woman Clothes</a></li>
+    //       <li><a href="#">Kids Clothes</a></li>
+    //     </ul>
+    //   </li>
+    // <li class = "link-item"><a href = "#" class = "link">Home improvement</a></li>
+    // <li class = "link-item"><a href = "#" class = "link">Sport and entertainment</a></li>
 
 //nav popup
 const userImageButton = document.querySelector('#user-img');

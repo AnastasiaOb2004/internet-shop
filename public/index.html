@@ -14,7 +14,7 @@
 
     <section id = "especially-for-you"></section>
 
-    <section id = "lowprices"></section>
+    <section id = "low-prices"></section>
     
     <section id = "tiktok-trends"></section>
 
@@ -25,10 +25,10 @@
     <script src = "js/home.js"></script>
     <script src = "js/footer.js"></script>
     <script> 
-     getProducts('TikTok trends').then(data => createProductSlider(data, '#tiktok-trends','TikTok Hits'));
-     getProducts('Especially-for-you').then(data => createProductSlider(data, '#especially-for-you','Especially for you'));
-     getProducts('Low Prices').then(data => createProductSlider(data, '#lowprices','Low prices'));
-     getProducts('Clothes').then(data => createProductSlider(data, '#clothes','Man clothes'));
+     getProducts('tiktok-trends').then(data => createProductSlider(data, '#tiktok-trends','Tiktok Trends'));
+     getProducts('sspecially-for-you').then(data => createProductSlider(data, '#especially-for-you','Especially for you'));
+     getProducts('low-prices').then(data => createProductSlider(data, '#low-prices','Low prices'));
+     getProducts('clothes').then(data => createProductSlider(data, '#clothes','Clothes'));
     </script>
 </body>
 

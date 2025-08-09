@@ -16,7 +16,16 @@ html {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 40px;
+    text-transform: capitalize;
 }
+
+#especially-for-you,
+#lowprices,
+#tiktok-trends,
+#clothes {
+    scroll-margin-top: 80px; 
+}
+
 
 .product-container {
     padding: 0 10vw;
@@ -63,6 +72,10 @@ html {
     top: 10px;
 }
 
+#user-img:hover, .product-thumb:hover {
+    cursor: pointer;
+}
+
 .card-btn {
     position: absolute;
     bottom: 10px;
@@ -95,8 +108,12 @@ html {
 
 .product-brand{
     text-transform: uppercase;
+
 }
 
+.product-brand:hover {
+    cursor: pointer;
+}
 .product-short-des{
     width:100%;
     height:20px;

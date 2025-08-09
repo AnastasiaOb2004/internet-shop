@@ -66,7 +66,7 @@ fetchProductData = () => {
   .then(data => {
     setData(data.product);  // pass only the product object, not the whole response
     getProducts(data.product.tags[1])
-      .then(list => createProductSlider(list, '.container-for-card-slider', 'similar products'));
+      .then(list => createProductSlider(list, '.container-for-card-slider', 'Similar Products'));
   });
 }
 

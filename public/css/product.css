@@ -47,13 +47,16 @@
     font-size: 30px;
 }
 
-.details .product-short-des {
+.details {
     font-size: 25px;
     line-height: 30px;
     height: auto;
     margin: 15px 0 30px;
 }
 
+.product-short-des {
+    font-size: 20px;
+}
 .product-price {
     font-weight: 700;
     font-size: 30px;
@@ -104,4 +107,5 @@
     line-height: 25px;
     white-space: pre-wrap;
     margin-bottom: 50px;
+     overflow-wrap: break-word; 
 }

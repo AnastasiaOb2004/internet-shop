@@ -14,6 +14,12 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+.container {
+     display: grid;
+     justify-content: center;
+     align-items: center;
+}
+
 .loader{
     position: fixed;
     top:50%;
@@ -25,11 +31,25 @@ body{
 
 .logo {
     height: 80px;
-    display: block;
-    margin: 0 auto 50px;
 }
 
-input:not(.search-box, .check-box, input[type="file"]){
+#logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#logo-link {
+    display: flex;
+    width: 80px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+input {
     display: block;
     width: 300px;
     height: 40px;
@@ -64,6 +84,17 @@ input:not(.search-box, .check-box, input[type="file"]){
     margin: 30px 0;
 }
 
+.checkbox-containers{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 35px;
+}
+
+.checkbox-containers label a {
+    margin-left: 1px;
+}
+
 .checkbox{
     position: relative;
     width:15px;
@@ -72,10 +103,8 @@ input:not(.search-box, .check-box, input[type="file"]){
     background: #fff;
     border: 1px solid #383838;
     cursor: pointer;
-}
-
-.checkbox:checked{
-    background: #383838;
+    margin-right: 10px;
+    margin-top: 15px;
 }
 
 .checkbox::after{
@@ -91,6 +120,7 @@ input:not(.search-box, .check-box, input[type="file"]){
     background-size: contain;
     background-repeat: no-repeat;
     display: none;
+    background: #383838;
 }
 
 .checkbox:checked::after{
