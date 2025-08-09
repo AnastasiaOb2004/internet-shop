@@ -8,7 +8,7 @@ const createFooter = () =>{
       <ul class = "category">
         <li class = "category-title">Categories</li>
 <li class="footer-link"><a href="/#especially-for-you" >Especially for you</a></li>
-<li class="footer-link"><a href="/#lowprices" >Low prices</a></li>
+<li class="footer-link"><a href="/#low-prices" >Low prices</a></li>
 <li class="footer-link"><a href="/#tiktok-trends" >TikTok hits</a></li>
 <li class="footer-link"><a href="/#clothes" >Clothes</a></li>
       </ul>

@@ -33,6 +33,10 @@ textarea {
     font-family: 'Roboto', sans-serif;
 }
 
+.upload-catalogue input[type="file"] {
+    display: none;
+}
+
 .product-info {
     width: 100%;
     height: 500px;
