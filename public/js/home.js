@@ -59,7 +59,7 @@ const createProductCards = (data) => {
             <h2 class="product-brand">${data[i].name || ''}</h2>
             <p class="product-short-des">${data[i].shortDes || ''}</p>
             <span class="price">${data[i].sellingPrice || ''}SEK</span>
-            <span class="actual-price">${data[i].actualPrice || ''}€</span>
+            <span class="actual-price">${data[i].actualPrice || ''}SEK</span>
           </div>
         </div>
       `;
